@@ -25,44 +25,51 @@ public class StatsService {
 
     public long calculateLastMaximum(long[] purchases) {
         long max = purchases[0];
-        for (long purchase : purchases) {
+        long month = 1;
+        for (int i = 0; i < purchases.length; i++) {
+            long purchase = purchases[i];
             if (max <= purchase) {
                 max = purchase;
+                month = i+1;
             }
         }
-        return max;
+        return month;
     }
 
-    public long calculateLastMinimal(long[] purchases) {
-        long min = purchases[0];
-        for (long purchase : purchases) {
-            if (min >= purchase) {
-                min = purchase;
+        public long calculateLastMinimal(long[] purchases) {
+            long max = purchases[0];
+            long month = 1;
+            for (int i = 0; i < purchases.length; i++) {
+                long purchase = purchases[i];
+                if (max >= purchase) {
+                    max = purchase;
+                    month = i+1;
+                }
             }
+            return month;
         }
-        return min;
+
+        public long calculateMonthsBelowTheAverage(long[] purchases) {
+            long quantityMonths = 0;
+            long average = 15;
+            for (long purchase : purchases) {
+                if (purchase < average) {
+                    quantityMonths = quantityMonths + 1;
+                }
+            }
+            return quantityMonths;
+        }
+
+        public long calculateMonthsAboveTheAverage(long[] purchases) {
+            long qualnityMonths = 0;
+            long average = 15;
+            for (long purchase : purchases) {
+                if (purchase > average) {
+                    qualnityMonths = qualnityMonths + 1;
+                }
+            }
+            return qualnityMonths;
+        }
     }
 
-    public long calculateMonthsBelowTheAverage(long[] purchases) {
-        long quantityMonths = 0;
-        long average = 15;
-        for (long purchase : purchases) {
-            if (purchase < average) {
-                quantityMonths = quantityMonths + 1;
-            }
-        }
-        return quantityMonths;
-    }
-
-    public long calculateMonthsAboveTheAverage(long[] purchases) {
-        long qualnityMonths = 0;
-        long average = 15;
-        for (long purchase : purchases) {
-            if (purchase > average) {
-                qualnityMonths = qualnityMonths + 1;
-            }
-        }
-        return qualnityMonths;
-    }
-}
 
